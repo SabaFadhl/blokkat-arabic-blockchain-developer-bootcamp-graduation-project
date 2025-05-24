@@ -27,6 +27,7 @@ export default function Navbar() {
         {/* <!-- Navigation --> */}
         <div className="flex items-center space-x-4">
           
+            <w3m-button/>
   
         </div>
       </div>
