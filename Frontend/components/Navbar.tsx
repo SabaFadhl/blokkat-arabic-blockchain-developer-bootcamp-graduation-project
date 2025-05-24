@@ -28,6 +28,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4">
           
             <w3m-button/>
+            <w3m-network-button/>
   
         </div>
       </div>
