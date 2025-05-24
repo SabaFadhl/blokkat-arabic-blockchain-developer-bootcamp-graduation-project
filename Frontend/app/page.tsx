@@ -1,7 +1,12 @@
-import Image from "next/image";
+
+import Navbar from "../components/Navbar"
+
 
 export default function Home() {
   return (
-   <appkit-button />
-  );
+    <div>
+      <Navbar />
+
+    </div>
+  )
 }
