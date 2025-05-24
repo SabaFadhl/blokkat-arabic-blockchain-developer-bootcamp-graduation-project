@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Font Awesome CSS
+import '../lib/fontawesome'; // Import the Font Awesome library
 const inter = Inter({ subsets: ['latin'] })
 
 import { headers } from 'next/headers' // added
 import ContextProvider from '@/context'
 
 export const metadata: Metadata = {
-  title: 'AppKit Example App',
+  title: 'Blokkat Shop',
   description: 'Powered by Reown'
 }
 
