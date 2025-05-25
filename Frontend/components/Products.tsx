@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function Products() {
-  // Initialize products data
   const [products] = useState([
     {
       id: 1,
@@ -48,18 +48,22 @@ export default function Products() {
     },
   ]);
 
+  const { addToCart, setShowCart } = useCart();
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setShowCart(true);
+  };
+
   return (
-    <div className="flex flex-col md:flex-row gap-8">
-      {/* Products Grid */}
+    <div className="flex flex-col md:flex-row gap-8 pt-20">
       <div className="flex-1">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Loop through products */}
           {products.map((product) => (
             <div
               key={product.id}
               className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              {/* Product Image */}
               <div className="h-64 overflow-hidden">
                 <img
                   src={product.image}
@@ -68,7 +72,6 @@ export default function Products() {
                 />
               </div>
 
-              {/* Product Details */}
               <div className="p-4">
                 <h3 className="text-lg font-medium text-gray-800 mb-2">
                   {product.name}
@@ -84,7 +87,10 @@ export default function Products() {
                     ${product.fiatPrice}
                   </span>
                 </div>
-                <button className="w-full py-2 bg-indigo-600 text-white rounded-lg cursor-pointer hover:bg-indigo-700 transition-colors">
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="w-full py-2 bg-indigo-600 text-white rounded-lg cursor-pointer hover:bg-indigo-700 transition-colors"
+                >
                   Add to Cart
                 </button>
               </div>

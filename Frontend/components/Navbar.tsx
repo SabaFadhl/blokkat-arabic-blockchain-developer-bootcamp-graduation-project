@@ -2,14 +2,11 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer";
 
 export default function Navbar() {
-  const { cartItems } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
+  const { cartItems, showCart, setShowCart } = useCart();
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -36,14 +33,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Buttons */}
           <div className="flex items-center space-x-4">
             <w3m-button />
             <w3m-network-button />
 
             {/* Cart Icon */}
-            <button onClick={() => setIsCartOpen(true)} className="relative">
-              <FontAwesomeIcon icon={faShoppingCart} className="text-gray-700 text-xl" />
+            <button onClick={() => setShowCart(true)} className="relative">
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                className="text-gray-700 text-xl"
+              />
               {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems}
@@ -55,7 +55,7 @@ export default function Navbar() {
       </header>
 
       {/* Cart Drawer */}
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
     </>
   );
 }
