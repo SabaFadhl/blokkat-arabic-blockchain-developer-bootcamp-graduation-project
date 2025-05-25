@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Cart() {
   return (
-<div className="relative cursor-pointer">
+<div className="relative cursor-pointer" >
             <FontAwesomeIcon
             icon="shopping-cart"
             className=" text-gray-700 text-xl text-indigo-600"

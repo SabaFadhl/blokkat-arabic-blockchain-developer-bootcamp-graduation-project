@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Font Awesome CSS
 import '../lib/fontawesome'; // Import the Font Awesome library
+import { CartProvider } from "@/context/CartContext";
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 import { headers } from 'next/headers' // added
@@ -22,11 +25,14 @@ export default async function RootLayout({
   const headersObj = await headers();
   const cookies = headersObj.get('cookie')
 
-  return (
+return (
     <html lang="en">
       <body className={inter.className}>
-        <ContextProvider cookies={cookies}>{children}</ContextProvider>
+        {/* Wrap existing ContextProvider first, then wrap CartProvider */}
+        <ContextProvider cookies={cookies}>
+          <CartProvider>{children}</CartProvider>
+        </ContextProvider>
       </body>
     </html>
-  )
+  );
 }
