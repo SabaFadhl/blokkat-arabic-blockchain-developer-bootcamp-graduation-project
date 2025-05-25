@@ -4,11 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer";
+import { useAccount, useBalance } from "wagmi";
 
 export default function Navbar() {
   const { cartItems, showCart, setShowCart } = useCart();
+  
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const { address, isConnected } = useAccount();
+  const { data: balanceData } = useBalance({
+    address,
+    enabled: !!address,
+  })
 
+  const formatAddress = (addr: string | undefined) =>
+    addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : "";
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-16 bg-white shadow-sm z-50">
@@ -35,7 +44,30 @@ export default function Navbar() {
 
           {/* Buttons */}
           <div className="flex items-center space-x-4">
-            <w3m-button />
+              <div>
+                  {!isConnected ? (
+                    <w3m-button />
+                  ) : (
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+                        <i className="fas fa-wallet text-indigo-600 mr-2"></i>
+                        <div className="flex flex-col">
+                          <span className="text-xs text-gray-500">Balance</span>
+                          <span className="text-sm font-medium">
+                            {balanceData ? `${balanceData.formatted} ${balanceData.symbol}` : "Loading..."}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+                        <i className="fas fa-user-circle text-indigo-600 mr-2"></i>
+                        <div className="flex flex-col">
+                          <span className="text-xs text-gray-500">Address</span>
+                          <span className="text-sm font-medium">{formatAddress(address)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
             <w3m-network-button />
 
             {/* Cart Icon */}
