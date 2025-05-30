@@ -3,6 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useCart } from "../context/CartContext";
+import PayButton from "./PayButton";
 
 export default function CartDrawer({ isOpen, onClose }) {
   const { cartItems, addToCart, removeFromCart } = useCart();
@@ -84,13 +85,8 @@ export default function CartDrawer({ isOpen, onClose }) {
             </div>
           </div>
           <div className="space-y-2">
-            <button
-              className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 disabled:opacity-50"
-              disabled={cartItems.length === 0}
-              onClick={() => alert("Checkout not implemented yet")}
-            >
-              Checkout
-            </button>
+            {/* Use the PayButton component */}
+            <PayButton cartItems={cartItems} />
             <button
               onClick={onClose}
               className="w-full py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300"

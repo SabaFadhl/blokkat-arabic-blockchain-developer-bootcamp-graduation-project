@@ -1,7 +1,6 @@
-export const CONTRACT_ADDRESS = "0xeffaD35582FF43f752C65cB1D21122F6E70D9472";
+export const CONTRACT_ADDRESS = "0x408a172FDF61C3711F632cA918cBe490A31dAE86";
 
 export const CONTRACT_ABI = [
-  
 	{
 		"inputs": [
 			{
@@ -112,6 +111,25 @@ export const CONTRACT_ABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "usdAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "convertUsdToEth",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getAllProducts",
 		"outputs": [
@@ -216,5 +234,4 @@ export const CONTRACT_ABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-
-];
+]
