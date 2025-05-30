@@ -5,6 +5,8 @@ import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer";
 import { useAccount, useBalance } from "wagmi";
+import { library } from '@fortawesome/fontawesome-svg-core'
+library.add(faSearch, faShoppingCart);
 
 export default function Navbar() {
   const { cartItems, showCart, setShowCart } = useCart();
