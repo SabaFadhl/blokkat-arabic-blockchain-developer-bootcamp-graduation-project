@@ -19,8 +19,8 @@ export default function CartDrawer({ isOpen, onClose }) {
     addToCart(item);
   };
 
-  const totalCrypto = cartItems.reduce((sum, item) => sum + item.cryptoPrice * item.quantity, 0);
-  const totalFiat = (totalCrypto * 3500).toFixed(2); // Example: 1 ETH = $3500
+  const totalCrypto = 0.00432;
+  const totalFiat = cartItems.reduce((sum, item) => sum + item.fiatPrice * item.quantity, 0);
 
   return (
     <div
@@ -51,7 +51,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                   <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
                   <div className="ml-4 flex-1">
                     <h4 className="text-sm font-medium">{item.name}</h4>
-                    <div className="text-sm text-indigo-600 font-medium">{item.cryptoPrice} ETH</div>
+                    <div className="text-sm text-indigo-600 font-medium">{item.fiatPrice} $</div>
                   </div>
                   <div className="flex items-center">
                     <button
@@ -79,8 +79,8 @@ export default function CartDrawer({ isOpen, onClose }) {
           <div className="flex justify-between mb-4">
             <span className="font-medium">Total:</span>
             <div className="text-right">
-              <div className="font-semibold text-indigo-600">{totalCrypto.toFixed(3)} ETH</div>
-              <div className="text-sm text-gray-500">${totalFiat}</div>
+              <div className="font-semibold text-indigo-600">{totalFiat.toFixed(3)} $</div>
+              <div className="font-semibold text-indigo-600">{totalCrypto.toFixed(5)} ETH</div>
             </div>
           </div>
           <div className="space-y-2">
