@@ -1,52 +1,34 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useReadContract } from "wagmi";
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/lib/constants";
 
 export default function Products() {
-  const [products] = useState([
-    {
-      id: 1,
-      name: "Premium Wireless Headphones",
-      image: "/img/headphones.jpg",
-      cryptoPrice: 0.15,
-      fiatPrice: 249.99,
-    },
-    {
-      id: 2,
-      name: "Smart Watch Pro",
-      image: "/img/smartwatch.jpg",
-      cryptoPrice: 0.12,
-      fiatPrice: 199.99,
-    },
-    {
-      id: 3,
-      name: "Drone X Pro",
-      image: "/img/drone.jpg",
-      cryptoPrice: 0.3,
-      fiatPrice: 499.99,
-    },
-    {
-      id: 4,
-      name: "VR Headset Elite",
-      image: "/img/vr-headset.jpg",
-      cryptoPrice: 0.18,
-      fiatPrice: 299.99,
-    },
-    {
-      id: 5,
-      name: "Mechanical Keyboard",
-      image: "/img/keyboard.jpg",
-      cryptoPrice: 0.06,
-      fiatPrice: 99.99,
-    },
-    {
-      id: 6,
-      name: "Portable SSD 1TB",
-      image: "/img/ssd.jpg",
-      cryptoPrice: 0.09,
-      fiatPrice: 149.99,
-    },
-  ]);
+  const [products, setProducts] = useState<any[]>([]);
+
+  const { data, isLoading, error } = useReadContract({
+    abi: CONTRACT_ABI,
+    address: CONTRACT_ADDRESS,
+    functionName: "getAllProducts",
+  });
+
+  useEffect(() => {
+    if (data) {
+      const parsed = data.map((p: any) => ({
+        id: Number(p.id),
+        name: p.name,
+        image: p.image,
+        fiatPrice: Number(p.fiatPrice) / 100, // convert from cents
+        quantity: Number(p.quantity),
+      }));
+      setProducts(parsed);
+    }
+  }, [data]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading products.</p>;
 
   const { addToCart, setShowCart } = useCart();
 
@@ -80,11 +62,11 @@ export default function Products() {
                   <div className="flex items-center">
                     <i className="fab fa-ethereum text-indigo-600 mr-1"></i>
                     <span className="font-semibold text-indigo-600">
-                      {product.cryptoPrice} ETH
+                      {product.quantity} Available Quantity
                     </span>
                   </div>
                   <span className="text-sm text-gray-500">
-                    ${product.fiatPrice}
+                    ${product.fiatPrice.toFixed(2)}
                   </span>
                 </div>
                 <button
