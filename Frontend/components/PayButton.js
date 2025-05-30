@@ -31,9 +31,11 @@ export default function PayButton({ cartItems }) {
             const paymentAmountEth = Number(result.data) / 1e18;
             const balanceEth = balanceData ? Number(balanceData.value) / 1e18 : 0;
             console.log(result)
-            alert(
-                `🧾 Payment Amount: ${paymentAmountEth.toFixed(12)} ETH\n💰 Your Balance: ${balanceEth.toFixed(12)} ETH`
-            );
+            if (confirm(`🧾 Payment Amount: ${paymentAmountEth.toFixed(12)} ETH\n💰 Your Balance: ${balanceEth.toFixed(12)} ETH\n Confirm Pay?`) == true) {
+                
+            } else {
+               
+            }
         } catch (error) {
             console.error("Error reading contract:", error);
             alert('❌ Failed to fetch payment details');
