@@ -6,10 +6,8 @@ Here’s a complete `README.md` file for your project, written in English and fo
 # 🛍️ Blokkat Shop
 
 A decentralized e-commerce platform where users can shop using cryptocurrencies like ETH. Powered by smart contracts and deployed on the Scroll Sepolia testnet, this project demonstrates secure, transparent, and fast payments using blockchain technology.
+```
 ![localhost_3000_ (1)](https://github.com/user-attachments/assets/5a056165-ab13-483b-baa6-0f52cbdc2fcc)
-
----
-
 ## 📂 About This Project
 
 ### 🚀 Project Description
@@ -19,11 +17,9 @@ Blokkat Shop is a full-stack DApp allowing users to:
 - View product stock in real-time.
 - Make secure blockchain transactions from the frontend.
 
----
+
 
 ### 📁 Directory Structure
-
-![Uploading image.png…]()
 
 
 #### Backend (Smart Contracts - Foundry)
