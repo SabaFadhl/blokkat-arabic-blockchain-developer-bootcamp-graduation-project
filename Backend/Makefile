@@ -1,3 +1,3 @@
 -include .env
 deploy:
-	forge create BlokkatShop --private-key $(ANVIL_PRIVATE_KEY) --rpc-url $(ANVIL_RPC_URL)
+	forge create BlokkatShop --private-key $(PRIVATE_KEY) --rpc-url $(RPC_URL) --broadcast
