@@ -1,8 +1,4 @@
-Here’s a complete `README.md` file for your project, written in English and following the structure and requirements you shared:
 
----
-
-```markdown
 # 🛍️ Blokkat Shop
 
 A decentralized e-commerce platform where users can shop using cryptocurrencies like ETH. Powered by smart contracts and deployed on the Scroll Sepolia testnet, this project demonstrates secure, transparent, and fast payments using blockchain technology.
