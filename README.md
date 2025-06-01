@@ -1,26 +1,32 @@
-
-# 🛍️ Blokkat Shop
+# 🏍️ Blokkat Shop
 
 A decentralized e-commerce platform where users can shop using cryptocurrencies like ETH. Powered by smart contracts and deployed on the Scroll Sepolia testnet, this project demonstrates secure, transparent, and fast payments using blockchain technology.
 
-![localhost_3000_ (1)](https://github.com/user-attachments/assets/5a056165-ab13-483b-baa6-0f52cbdc2fcc)
+![localhost\_3000\_ (1)](https://github.com/user-attachments/assets/5a056165-ab13-483b-baa6-0f52cbdc2fcc)
+
+---
+
 ## 📂 About This Project
 
 ### 🚀 Project Description
 
-Blokkat Shop is a full-stack DApp allowing users to:
-- Browse and purchase digital products.
-- View product stock in real-time.
-- Make secure blockchain transactions from the frontend.
+Blokkat Shop is a full-stack DApp developed as part of the graduation requirements for the **Blokkat Smart Contract Developer Bootcamp**.
 
+It allows users to:
 
+* Browse and purchase digital products.
+* View product stock in real-time.
+* Make secure blockchain transactions from the frontend.
+
+### 💡 Project Idea
+
+The idea behind this project is to simulate a real-world online store where all payments are made in crypto. The prices are displayed in USD but converted dynamically to ETH using **Chainlink Price Feeds**, allowing users to pay an equivalent amount in ETH on the **Sepolia network**. This creates a bridge between traditional e-commerce and blockchain-based payments.
 
 ### 📁 Directory Structure
 
-
 #### Backend (Smart Contracts - Foundry)
 
-```
+```bash
 Backend/
 ├── src/             # Solidity contracts
 ├── script/          # Deployment & interaction scripts
@@ -29,11 +35,10 @@ Backend/
 ├── foundry.toml     # Foundry config
 └── README.md        # Backend documentation
 ```
-```
 
 #### Frontend (Next.js + Wagmi + Ethers)
-```
-```
+
+```bash
 Frontend/
 ├── app/             # App routes and pages
 ├── components/      # Reusable React components
@@ -44,17 +49,18 @@ Frontend/
 ├── .env             # Environment variables (user-specific)
 └── README.md        # Frontend documentation
 ```
-````
 
 ---
 
 ## 🎨 Design Patterns
 
 ### ✅ Inheritance and Interfaces
-- Used `Ownable` from OpenZeppelin in `src/BlokkatShop.sol` to manage ownership of the contract.
+
+* Used `Ownable` from OpenZeppelin in `src/BlokkatShop.sol` to manage ownership of the contract.
+
 ```solidity
 import "@openzeppelin/contracts/access/Ownable.sol";
-````
+```
 
 ### ✅ Access Control Design Patterns
 
@@ -72,14 +78,13 @@ function withdraw() public onlyOwner {
 
 ### ✅ Using Specific Compiler Pragma
 
-
 ```solidity
 pragma solidity 0.8.20;
 ```
 
 ### ✅ Proper Use of Require
 
-* Ensured safety checks with `require()` across all functions, e.g.:
+Ensured safety checks with `require()` across all functions:
 
 ```solidity
 require(msg.value >= product.price * quantity, "Insufficient ETH sent");
@@ -90,17 +95,19 @@ require(product.quantity >= quantity, "Not enough stock available");
 
 ## 🔗 Important Links & Addresses
 
-### 🧾 Verified Contracts (Scroll Sepolia)
+### 📜 Verified Contract (Scroll Sepolia)
 
-@@@
+[Scroll Explorer - Contract](https://sepolia.scrollscan.com/address/0xb4d7e62C39fe0Bc41290E6eB5cC056e1e58cB55D)
 
-### 💡 Contract Addresses
+### 📊 Contract Address
 
-@@@
+```
+0xb4d7e62C39fe0Bc41290E6eB5cC056e1e58cB55D
+```
 
 ### 🌐 Frontend DApp Hosted At
 
-@@@
+[https://blokkat-store-kama.vercel.app/](https://blokkat-store-kama.vercel.app/)
 
 ---
 
@@ -114,18 +121,18 @@ forge build
 forge test
 ```
 
-Make sure Foundry is installed. You can install it from: [https://book.getfoundry.sh/getting-started/](https://book.getfoundry.sh/getting-started/)
+Make sure Foundry is installed: [https://book.getfoundry.sh/getting-started/](https://book.getfoundry.sh/getting-started/)
 
 ---
 
-## ▶️ How to Run the Program
+## 🚀 How to Run the Program
 
-### 🧩 Backend
+### 🔹 Backend
 
 ```bash
 cd Backend
 forge build
-forge script script/Deploy.s.sol:Deploy --rpc-url <SCROLL_SEPOLIA_RPC> --private-key <YOUR_PRIVATE_KEY> --broadcast --verify
+forge script script/BlokkatShop.s.sol:BlokkatShop --rpc-url https://sepolia-rpc.scroll.io/ --private-key <YOUR_PRIVATE_KEY> --broadcast --verify
 ```
 
 ### 💻 Frontend
@@ -140,32 +147,32 @@ npm run dev
 
 Create a `.env` file in the `Frontend/` directory:
 
+```env
+NEXT_PUBLIC_PROJECT_ID=0xb4d7e62C39fe0Bc41290E6eB5cC056e1e58cB55D
 ```
-NEXT_PUBLIC_CONTRACT_ADDRESS=0xYOUR_DEPLOYED_CONTRACT
-NEXT_PUBLIC_CHAIN_ID=534351
-NEXT_PUBLIC_SCROLL_SEPOLIA_RPC=https://sepolia-rpc.scroll.io/
+
+Create a `.env` file in the `Backend/` directory:
+```env
+PRIVATE_KEY=<YOUR_PRIVATE_KEY>
+RPC_URL=https://sepolia-rpc.scroll.io/
 ```
 
 ---
 
 ## 🎥 Demo
 
-@@@
+[Watch Demo on YouTube](https://youtu.be/KGlBNauD3X8)
+
 The demo includes:
 
 * Navigating the storefront.
+* Connecting a wallet.
+* Viewing balance.
 * Adding items to the cart.
 * Checking out with ETH.
 * Verifying transaction on Scroll Sepolia explorer.
-* Reading updated data directly from the smart contract.
+* Reading updated data from the smart contract.
 
 ---
 
 > Built with ❤️ by Saba Fadhl
-
-```
-
----
-
-Let me know if you want the `.md` file itself or want to add the actual deployed contract address and video link — I’ll include them.
-```
