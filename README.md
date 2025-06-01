@@ -97,7 +97,7 @@ require(product.quantity >= quantity, "Not enough stock available");
 
 ### 📜 Verified Contract (Scroll Sepolia)
 
-[Scroll Explorer - Contract](https://sepolia.scrollscan.com/address/0xb4d7e62C39fe0Bc41290E6eB5cC056e1e58cB55D)
+[Etherscan - Contract](https://sepolia.etherscan.io/address/0xb4d7e62C39fe0Bc41290E6eB5cC056e1e58cB55D)
 
 ### 📊 Contract Address
 
